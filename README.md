@@ -28,4 +28,4 @@ Erstelle eine REST API, die folgende Funktionalität ermöglicht:
 
 Die API wurde mit OpenAPI dokumentiert:
 
-[http://localhost:8080/docs]
+[Link zu der OpenAPI Dokumentation](http://localhost:8080/docs)
