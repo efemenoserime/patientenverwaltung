@@ -1,0 +1,32 @@
+{
+  "name": "patientenverwaltung-probeaufgabe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bundle": "parcel watch src/index.js --target node",
+    "serve": "nodemon dist/index.js",
+    "dev": "concurrently \"npm run bundle\" \"npm run serve\"",
+    "lint": "eslint ./src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "argon2": "^0.26.2",
+    "cors": "^2.8.5",
+    "email-validator": "^2.0.4",
+    "express": "^4.17.1",
+    "helmet": "^3.22.0",
+    "mongoose": "^5.9.18",
+    "swagger-ui-express": "^4.1.4"
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "eslint": "^7.2.0",
+    "nodemon": "^2.0.4",
+    "parcel-bundler": "^1.12.4",
+    "prettier": "^2.0.5"
+  }
+}

@@ -1,0 +1,325 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Probeaufgabe Medflex",
+    "version": "0.1",
+    "contact": "Efeme Noserime",
+    "description": "Kleine und simple REST API zum Anlegen und Verwalten von Patienten und Ärzten."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Server description"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/patienten": {
+      "post": {
+        "description": "Erstelle neuen Patienten",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Patient"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Neuer Patient wurde erfolgreich angelegt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "success": {
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "patient": {
+                      "type": "object",
+                      "example": {
+                        "name": "Pia Müller",
+                        "email": "p.mueller@gmail.com",
+                        "passwort": "$argon2i$v=19$m=16,t=2,p=1$YmpsRjZEQ1F1VmNlbWNJQQ$Rx6hLNnIuJtuN4EKz1FSJw"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Fehler bei der Erzeugung eines Patienten",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ValidationError"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "description": "Auflistung aller bestehenden Patienten",
+        "responses": {
+          "200": {
+            "description": "Erfolgreich bestehende Patienten aufgerufen",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "patient": {
+                      "type": "object",
+                      "example": {
+                        "name": "Konrad Zuse",
+                        "email": "konrad.zuse@outlook.com",
+                        "passwort": "$argon2i$v=19$m=16,t=2,p=1$YmpsRjZEQ1F1VmNlbWNJQQ$yOxdpKAAwYVrqpDGqt3vwg"
+                      },
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "example": "Konrad Zuse"
+                        },
+                        "email": {
+                          "type": "string",
+                          "example": "konrad.zuse@outlook.com"
+                        },
+                        "password": {
+                          "type": "string",
+                          "example": "$argon2i$v=19$m=16,t=2,p=1$YmpsRjZEQ1F1VmNlbWNJQQ$yOxdpKAAwYVrqpDGqt3vwg"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/aerzte": {
+      "get": {
+        "description": "Auflistung aller bestehender Ärzte",
+        "responses": {
+          "200": {
+            "description": "Erfolgreicher Abruf aller Ärzte",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Arzt"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Erzeuge neuen Arzt",
+        "responses": {
+          "201": {
+            "description": "Neuer Arzt wurde erfolgreich angelegt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "msg": {
+                      "type": "string",
+                      "example": "Arzt wurde erfolgreich angelegt"
+                    },
+                    "arzt": {
+                      "$ref": "#/components/schemas/Arzt"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erstellung des Arztes fehlgeschlagen",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ARZT_EXIST_ALREADY_ERROR"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/aerzte/{arzt_email}/behandelt/{patient_email}": {
+      "get": {
+        "description": "Verbinde Arzt mit Patient",
+        "responses": {
+          "200": {
+            "description": "Verbindung zwischen Arzt und Patient wurde erfolgreich hergestellt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "arzt": {
+                      "$ref": "#/components/schemas/Arzt"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Verbindung konnte nicht hergestellt werden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "components": {
+    "schemas": {
+      "Arzt": {
+        "type": "object",
+        "required": ["name", "email", "passwort"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Tom Sawyer"
+          },
+          "email": {
+            "type": "string",
+            "example": "tom.sawyer@gmail.com"
+          },
+          "passwort": {
+            "type": "string",
+            "example": "$argon2i$v=19$m=16,t=2,p=1$dm9oSTZOREFxZkt3eUNZYQ$BnO23RR0lCbhFmWmhZUomg"
+          },
+          "titel": {
+            "type": "string",
+            "example": "Prof"
+          },
+          "patienten": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Patient"
+            }
+          }
+        }
+      },
+      "Patient": {
+        "type": "object",
+        "required": ["name", "email", "passwort"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "George Floyd"
+          },
+          "email": {
+            "type": "string",
+            "example": "geo.floyd@gmail.com"
+          },
+          "passwort": {
+            "type": "string",
+            "example": "$argon2i$v=19$m=16,t=2,p=1$VTQ4Y2FTVTN4SklBUVlPcQ$gDRtQfVxpsnMYi/gxW0fPQ"
+          }
+        }
+      },
+      "ValidationError": {
+        "type": "object",
+        "properties": {
+          "msg": {
+            "type": "string"
+          },
+          "field": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "ARZT_EXIST_ALREADY_ERROR": {
+        "type": "object",
+        "properties": {
+          "msg": {
+            "type": "string",
+            "example": "Email existiert bereits"
+          },
+          "field": {
+            "type": "string",
+            "example": "email"
+          },
+          "value": {
+            "type": "string",
+            "example": "j.doe@yahoo.com"
+          }
+        }
+      }
+    }
+  }
+}

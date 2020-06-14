@@ -1,0 +1,50 @@
+{
+  "anwender": {
+    "aerzte": [
+      {
+        "name": "Pete Doolittle",
+        "titel": "Dr",
+        "email": "p.doolittle@gmail.com",
+        "passwort": "$argon2i$v=19$m=16,t=2,p=1$YmpsRjZEQ1F1VmNlbWNJQQ$0VVIzvjvyQT3aYGUXw55pA"
+      },
+      {
+        "name": "Claudia Williams",
+        "titel": "Prof",
+        "email": "claudia.williams@web.de",
+        "passwort": "$argon2i$v=19$m=16,t=2,p=1$YmpsRjZEQ1F1VmNlbWNJQQ$D4me0NtEgZtQwEH9sx3BqQ"
+      },
+      {
+        "name": "Sigmar Hubert",
+        "email": "sigmar.williams@outlook.com",
+        "passwort": "$argon2i$v=19$m=16,t=2,p=1$YmpsRjZEQ1F1VmNlbWNJQQ$Wej+TMnBOQ934xxdi3v2zw"
+      }
+    ],
+    "patienten": [
+      {
+        "name": "George Lucas",
+        "email": "geo.lucas@gmail.com",
+        "passwort": "$argon2i$v=19$m=16,t=2,p=1$YmpsRjZEQ1F1VmNlbWNJQQ$IU2LL8gs2iy0Z1ifnCTrFg"
+      },
+      {
+        "name": "Pia Müller",
+        "email": "p.mueller@gmail.com",
+        "passwort": "$argon2i$v=19$m=16,t=2,p=1$YmpsRjZEQ1F1VmNlbWNJQQ$Rx6hLNnIuJtuN4EKz1FSJw"
+      },
+      {
+        "name": "Konrad Zuse",
+        "email": "konrad.zuse@outlook.com",
+        "passwort": "$argon2i$v=19$m=16,t=2,p=1$YmpsRjZEQ1F1VmNlbWNJQQ$yOxdpKAAwYVrqpDGqt3vwg"
+      },
+      {
+        "name": "Peter Zwegat",
+        "email": "peter.zwegat@gmail.com",
+        "passwort": "$argon2i$v=19$m=16,t=2,p=1$YmpsRjZEQ1F1VmNlbWNJQQ$Ybtl/UQUblXqEyfCeZXKEg"
+      },
+      {
+        "name": "Sandra Korn",
+        "email": "sandra.korn@web.de",
+        "passwort": "$argon2i$v=19$m=16,t=2,p=1$YmpsRjZEQ1F1VmNlbWNJQQ$akPxnF8UEUW/9J1xmbd1lA"
+      }
+    ]
+  }
+}
