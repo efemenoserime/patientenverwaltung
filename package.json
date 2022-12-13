@@ -17,7 +17,7 @@
     "argon2": "^0.26.2",
     "cors": "^2.8.5",
     "email-validator": "^2.0.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "helmet": "^3.22.0",
     "mongoose": "^5.9.18",
     "swagger-ui-express": "^4.1.4"
